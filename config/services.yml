@@ -1,0 +1,12 @@
+services:
+    cron.task.core.inactive_users:
+        class: phpbb\inactive_users\cron\task\core\inactive_users
+        arguments:
+            - %core.root_path%
+            - %core.php_ext%
+            - @config
+            - @dbal.conn
+        calls:
+            - [set_name, [cron.task.core.inactive_users]]
+        tags:
+            - { name: cron.task }
