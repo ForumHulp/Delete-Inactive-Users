@@ -52,7 +52,7 @@ class inactive_users extends \phpbb\cron\task\base
 		$expire_date = time() - ($this->config['inactive_users_days'] * 86400);
 		$user_list = array();
 	
-		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = 1 AND user_new = 1 AND user_regdate < ' . $expire_date;
+		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = USER_INACTIVE AND user_new = 1 AND user_regdate < ' . $expire_date;
 		$result = $db->sql_query($sql);
 	
 		while ($row = $db->sql_fetchrow($result))
