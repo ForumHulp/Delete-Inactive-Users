@@ -81,7 +81,7 @@ class inactive_users extends \phpbb\cron\task\base
 	*/
 	public function is_runnable()
 	{
-		return (bool) true;
+		return (bool) $this->config['inactive_users_days'];
 	}
 
 	/**
