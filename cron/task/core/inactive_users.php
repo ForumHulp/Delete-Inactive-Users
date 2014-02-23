@@ -65,8 +65,8 @@ class inactive_users extends \phpbb\cron\task\base
 		if (sizeof($user_list))
 		{
 			$sql = 'DELETE FROM ' . USERS_TABLE . ' WHERE ' . $db->sql_in_set('user_id', array_keys($user_list));
-		//	$db->sql_query($sql);
-		//	add_log('admin', 'LOG_INACTIVE_DELETE', implode(', ', $user_list));
+			$db->sql_query($sql);
+			add_log('admin', 'LOG_INACTIVE_DELETE', implode(', ', $user_list));
 		} else
 		{
 			add_log('admin', 'NO_INACTIVE_USERS');
