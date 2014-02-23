@@ -1,6 +1,6 @@
 services:
     cron.task.core.inactive_users:
-        class: phpbb\inactive_users\cron\task\core\inactive_users
+        class: forumhulp\inactive_users\cron\task\core\inactive_users
         arguments:
             - %core.root_path%
             - %core.php_ext%

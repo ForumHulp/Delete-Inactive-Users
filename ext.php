@@ -7,7 +7,7 @@
 *
 */
 
-namespace phpbb\inactive_users;
+namespace forumhulp\inactive_users;
 
 class ext extends \phpbb\extension\base
 {

@@ -1,10 +1,10 @@
 {
-	"name": "phpbb/inactive_users",
+	"name": "forumhulp/inactive_users",
 	"type": "phpbb-extension",
 	"description": "An extension deleting inactive users by cron",
 	"homepage": "http://forumhulp.com",
-	"version": "1.0.0-dev",
-	"keywords": ["phpbb", "extension", "users"],
+	"version": "3.1.0-dev",
+	"keywords": ["forumhulp", "phpbb", "extension", "users"],
 	"licence": "GPL-2.0",
 	"authors": [
 		{

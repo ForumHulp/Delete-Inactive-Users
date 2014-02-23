@@ -7,7 +7,7 @@
 *
 */
 
-namespace phpbb\inactive_users\cron\task\core;
+namespace forumhulp\inactive_users\cron\task\core;
 
 /**
 * @ignore
@@ -52,7 +52,7 @@ class inactive_users extends \phpbb\cron\task\base
 		$expire_date = time() - ($this->config['inactive_users_days'] * 86400);
 		$user_list = array();
 	
-		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = ' . USER_INACTIVE . ' AND user_new = 1 AND user_regdate < ' . $expire_date;
+		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = ' . USER_INACTIVE . ' user_new = 1 AND user_regdate < ' . $expire_date;
 		$result = $db->sql_query($sql);
 	
 		while ($row = $db->sql_fetchrow($result))
@@ -65,8 +65,8 @@ class inactive_users extends \phpbb\cron\task\base
 		if (sizeof($user_list))
 		{
 			$sql = 'DELETE FROM ' . USERS_TABLE . ' WHERE ' . $db->sql_in_set('user_id', array_keys($user_list));
-			$db->sql_query($sql);
-			add_log('admin', 'LOG_INACTIVE_DELETE', implode(', ', $user_list));
+		//	$db->sql_query($sql);
+		//	add_log('admin', 'LOG_INACTIVE_DELETE', implode(', ', $user_list));
 		} else
 		{
 			add_log('admin', 'NO_INACTIVE_USERS');
