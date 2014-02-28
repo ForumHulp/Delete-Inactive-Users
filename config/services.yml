@@ -10,3 +10,9 @@ services:
             - [set_name, [cron.task.core.inactive_users]]
         tags:
             - { name: cron.task }
+    forumhulp.inactive_users.listener:
+        class: forumhulp\inactive_users\event\listener
+        arguments:
+            - @controller.helper
+        tags:
+            - { name: event.listener }
