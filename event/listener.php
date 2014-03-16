@@ -35,8 +35,8 @@ class listener implements EventSubscriberInterface
     static public function getSubscribedEvents()
     {
         return array(
-            'core.acp_config_edit_add'	=> 'load_config_on_setup',
-			'core.user_setup'			=> 'load_language_on_setup'
+            'core.acp_board_config_edit_add'	=> 'load_config_on_setup',
+			'core.user_setup'					=> 'load_language_on_setup'
 		);
     }
 
