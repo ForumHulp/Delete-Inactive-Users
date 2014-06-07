@@ -22,6 +22,11 @@
 		"display-name": "Inactive Users",
 		"branch-alias": {
 			"dev-master": "1.0-dev"
+		},
+		"version-check": {
+			"host": "forumhulp.com",
+			"directory": "/ext",
+			"filename": "index.php?id=23"
 		}
 	}
 }
