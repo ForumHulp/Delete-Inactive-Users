@@ -33,7 +33,7 @@ class inactive_users extends \phpbb\cron\task\base
 	* @param phpbb_config $config The config
 	* @param phpbb_db_driver $db The db connection
 	*/
-	public function __construct($phpbb_root_path, $php_ext, \phpbb\config\config $config, \phpbb\db\driver\driver $db)
+	public function __construct($phpbb_root_path, $php_ext, \phpbb\config\config $config, \phpbb\db\driver\driver_interface $db)
 	{
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
