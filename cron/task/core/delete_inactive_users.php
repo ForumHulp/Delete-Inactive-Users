@@ -47,16 +47,15 @@ class delete_inactive_users extends \phpbb\cron\task\base
 		global $db;
 		$expire_date = time() - ($this->config['delete_inactive_users_days'] * 86400);
 		$user_list = array();
-	
+
 		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = ' . USER_INACTIVE . ' AND user_new = 1 AND user_regdate < ' . $expire_date;
 		$result = $db->sql_query($sql);
-	
+
 		while ($row = $db->sql_fetchrow($result))
 		{
 			$user_list[$row['user_id']] = $row['username'];
 		}
 		$db->sql_freeresult($result);
-		
 	
 		if (sizeof($user_list))
 		{
