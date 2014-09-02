@@ -56,7 +56,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 			$user_list[$row['user_id']] = $row['username'];
 		}
 		$db->sql_freeresult($result);
-	
+
 		if (sizeof($user_list))
 		{
 			$sql = 'DELETE FROM ' . USERS_TABLE . ' WHERE ' . $db->sql_in_set('user_id', array_keys($user_list));
