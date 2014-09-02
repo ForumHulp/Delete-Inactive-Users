@@ -1,17 +1,17 @@
 services:
-    cron.task.core.inactive_users:
-        class: forumhulp\inactive_users\cron\task\core\inactive_users
+    cron.task.core.DeleteInactiveUsers:
+        class: forumhulp\DeleteInactiveUsers\cron\task\core\delete_inactive_users
         arguments:
             - %core.root_path%
             - %core.php_ext%
             - @config
             - @dbal.conn
         calls:
-            - [set_name, [cron.task.core.inactive_users]]
+            - [set_name, [cron.task.core.delete_inactive_users]]
         tags:
             - { name: cron.task }
-    forumhulp.inactive_users.listener:
-        class: forumhulp\inactive_users\event\listener
+    forumhulp.DeleteInactiveUsers.listener:
+        class: forumhulp\DeleteInactiveUsers\event\listener
         arguments:
             - @controller.helper
         tags:

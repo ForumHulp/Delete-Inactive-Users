@@ -7,17 +7,13 @@
 *
 */
 
-namespace forumhulp\inactive_users\cron\task\core;
+namespace forumhulp\DeleteInactiveUsers\cron\task\core;
 
 /**
 * @ignore
 */
-if (!defined('IN_PHPBB'))
-{
-	exit;
-}
 
-class inactive_users extends \phpbb\cron\task\base
+class delete_inactive_users extends \phpbb\cron\task\base
 {
 	protected $phpbb_root_path;
 	protected $php_ext;
@@ -49,7 +45,7 @@ class inactive_users extends \phpbb\cron\task\base
 	public function run()
 	{
 		global $db;
-		$expire_date = time() - ($this->config['inactive_users_days'] * 86400);
+		$expire_date = time() - ($this->config['delete_inactive_users_days'] * 86400);
 		$user_list = array();
 	
 		$sql = 'SELECT user_id, username, user_regdate FROM ' . USERS_TABLE . ' WHERE user_type = ' . USER_INACTIVE . ' AND user_new = 1 AND user_regdate < ' . $expire_date;
@@ -71,7 +67,8 @@ class inactive_users extends \phpbb\cron\task\base
 		{
 			add_log('admin', 'NO_INACTIVE_USERS');
 		}
-		$this->config->set('inactive_users_last_gc', time());
+		$this->config->set('delete_inactive_users_last_gc', time());
+		return 'NO_INACTIVE_USERS';
 	}
 
 	/**
@@ -81,7 +78,7 @@ class inactive_users extends \phpbb\cron\task\base
 	*/
 	public function is_runnable()
 	{
-		return (bool) $this->config['inactive_users_days'];
+		return (bool) $this->config['delete_inactive_users_days'];
 	}
 
 	/**
@@ -92,6 +89,6 @@ class inactive_users extends \phpbb\cron\task\base
 	*/
 	public function should_run()
 	{
-		return $this->config['inactive_users_last_gc'] < time() - $this->config['inactive_users_gc'];
+		return $this->config['delete_inactive_users_last_gc'] < time() - $this->config['delete_inactive_users_gc'];
 	}
 }

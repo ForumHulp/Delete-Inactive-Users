@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\inactive_users\event;
+namespace forumhulp\DeleteInactiveUsers\event;
 
 /**
 * @ignore
@@ -36,7 +36,6 @@ class listener implements EventSubscriberInterface
     {
         return array(
             'core.acp_board_config_edit_add'	=> 'load_config_on_setup',
-			'core.user_setup'					=> 'load_language_on_setup'
 		);
     }
 
@@ -46,25 +45,15 @@ class listener implements EventSubscriberInterface
 		{
 			$display_vars = $event['display_vars'];
 			
-			$add_config_var['inactive_users_days'] = 
+			$add_config_var['delete_inactive_users_days'] = 
 				array(
 					'lang' 		=> 'INACTIVE_USERS_DAYS',
 					'validate'	=> 'int',
 					'type'		=> 'number:0:99',
 					'explain'	=> true
 				);
-			$display_vars['vars'] = insert_config_array($display_vars['vars'], $add_config_var, array('after' =>'allow_quick_reply'));
+			$display_vars['vars'] = phpbb_insert_config_array($display_vars['vars'], $add_config_var, array('after' =>'allow_quick_reply'));
 			$event['display_vars'] = array('title' => $display_vars['title'], 'vars' => $display_vars['vars']);
 		}
     }
-	
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext = $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name' => 'forumhulp/inactive_users',
-			'lang_set' => 'inactive_users_common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
-	}
 }

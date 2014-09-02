@@ -9,15 +9,15 @@
 
 if (!defined('IN_PHPBB'))
 {
-        exit;
+	exit;
 }
 
 if (empty($lang) || !is_array($lang))
 {
-        $lang = array();
+	$lang = array();
 }
 
 $lang = array_merge($lang, array(
-    'INACTIVE_USERS_DAYS' => 'Delete inactive users',
+	'INACTIVE_USERS_DAYS' => 'Delete inactive users',
 	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Days registered before cron wil delete new inacive users who never where logged in'
 ));

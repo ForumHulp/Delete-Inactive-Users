@@ -1,5 +1,5 @@
 {
-	"name": "forumhulp/inactive_users",
+	"name": "forumhulp/DeleteInactiveUsers",
 	"type": "phpbb-extension",
 	"description": "An extension deleting inactive users by cron",
 	"homepage": "http://forumhulp.com",
@@ -9,7 +9,6 @@
 	"authors": [
 		{
 			"name": "John Peskens",
-			"username": "John P",
 			"email": "info@forumhulp.com",
 			"role": "Developer"
 		}
@@ -19,7 +18,7 @@
 		"phpbb/phpbb": "3.1.*@dev"
 	},
 	"extra": {
-		"display-name": "Inactive Users",
+		"display-name": "Delete Inactive Users",
 		"soft-require": {
            "phpbb/phpbb": "3.1.*@dev"
         },
