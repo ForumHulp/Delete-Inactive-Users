@@ -132,7 +132,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 				}, $msg_list);
 
 				$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_REMIND', false, array(implode(', ', $userlist)));
-			}		
+			}
 		}
 
 		if (sizeof($delete_list))
