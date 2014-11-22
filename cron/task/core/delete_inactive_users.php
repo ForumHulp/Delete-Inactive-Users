@@ -31,7 +31,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 	* @param phpbb_config $config The config
 	* @param phpbb_db_driver $db The db connection
 	*/
-	public function __construct(\phpbb\user $user, \phpbb\config\config $config, \phpbb\config\db_text $config_text, \phpbb\db\driver\driver_interface $db,  \phpbb\log\log $log, $phpbb_root_path, $php_ext)
+	public function __construct(\phpbb\user $user, \phpbb\config\config $config, \phpbb\config\db_text $config_text, \phpbb\db\driver\driver_interface $db, \phpbb\log\log $log, $phpbb_root_path, $php_ext)
 	{
 		$this->user = $user;
 		$this->config = $config;
@@ -71,7 +71,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 					'lang' => $row['user_lang'],
 					'time' => time()
 				);
-				
+
 			} else
 			{
 				// Delete user
@@ -93,7 +93,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 			}
 		}
 		$this->db->sql_freeresult($result);
-		
+
 		if (sizeof($msg_list))
 		{
 			if ($this->config['email_enable'])
@@ -102,47 +102,52 @@ class delete_inactive_users extends \phpbb\cron\task\base
 				{
 					include($this->phpbb_root_path . 'includes/functions_messenger.' . $this->php_ext);
 				}
-				
+
 				$server_url = generate_board_url();
 				$messenger = new \messenger(false);
-		
+
 				foreach($msg_list as $key => $value)
 				{
 					$messenger->template('user_remind_inactive', $value['lang']);
-			
+
 					$messenger->to($value['email'], $value['name']);
-			
+
 					$messenger->headers('X-AntiAbuse: Board servername - ' . $this->config['server_name']);
 					$messenger->headers('X-AntiAbuse: User_id - ' . $key);
 					$messenger->headers('X-AntiAbuse: Username - ' . $value['name']);
 					$messenger->headers('X-AntiAbuse: User IP - ' . $this->user->ip);
-			
+
 					$messenger->assign_vars(array(
 						'USERNAME'		=> htmlspecialchars_decode($value['name']),
 						'REGISTER_DATE'	=> date('g:ia \o\n l jS F Y', $value['regdate']),
 						'U_ACTIVATE'	=> $server_url . '/ucp.'. $this->php_ext . '?mode=activate&u=' . $key . '&k=' . $value['useractkey']
 						)
 					);
-			
+
 					$messenger->send(NOTIFY_EMAIL);
 				}
-				$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_REMIND', false, array(implode(', ', array_map(function ($entry) {return $entry['name'];}, $msg_list))));
+				$userlist = array_map(function ($entry)
+				{
+					return $entry['name'];
+				}, $msg_list);
+
+				$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_REMIND', false, array(implode(', ', $userlist)));
 			}		
 		}
-	
+
 		if (sizeof($delete_list))
 		{
 			$sql = 'DELETE FROM ' . USERS_TABLE . ' WHERE ' . $this->db->sql_in_set('user_id', array_keys($delete_list));
 			$this->db->sql_query($sql);
 			$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_DELETE', false, array(implode(', ', $delete_list)));
 		}
-	
+
 		if (!sizeof($delete_list) && !sizeof($msg_list))
 		{
 			$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'NO_INACTIVE_USERS', false, array());
 		}
 		$msg_list += $not_deleted_yet;
-	
+
 		$this->config_text->set('delete_inactive_users_warning', json_encode($msg_list));
 		$this->config->set('delete_inactive_users_last_gc', time());
 	}
