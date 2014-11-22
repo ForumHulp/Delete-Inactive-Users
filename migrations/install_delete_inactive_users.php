@@ -13,7 +13,7 @@ class install_delete_inactive_users extends \phpbb\db\migration\migration
 {
 	public function effectively_installed()
 	{
-		return isset($this->config['delete_inactive_users_version']) && version_compare($this->config['delete_inactive_users_version'], '3.1.0.RC4', '>=');
+		return isset($this->config_text->get['delete_inactive_users_warning']);
 	}
 
 	static public function depends_on()
@@ -27,7 +27,7 @@ class install_delete_inactive_users extends \phpbb\db\migration\migration
 			array('config.add', array('delete_inactive_users_gc', 86400)),
 			array('config.add', array('delete_inactive_users_last_gc', '0', 1)),
 			array('config.add', array('delete_inactive_users_days', 30)),
-			array('config.add', array('delete_inactive_users_version', '3.1.0.RC4'))
+			array('config_text.add', array('delete_inactive_users_warning', 'a:1:{i:0;s:0:"";}'))
 		);
 	}
 }
