@@ -18,6 +18,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'INACTIVE_USERS_DAYS' => 'Borrar usuarios inactivos',
-	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Días registrado antes de que el cron elimine nuevos usuarios inactivos, que nunca iniciarón sesión'
+	'INACTIVE_USERS_DAYS'			=> 'Borrar usuarios inactivos',
+	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Días registrado antes de que el cron elimine nuevos usuarios inactivos, que nunca iniciarón sesión',
+	'LOG_INACTIVE_USERS'			=> '<strong>Delete inactive users</strong><br />» %s'
 ));

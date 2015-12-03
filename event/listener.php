@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\DeleteInactiveUsers\event;
+namespace forumhulp\deleteinactiveusers\event;
 
 /**
 * @ignore

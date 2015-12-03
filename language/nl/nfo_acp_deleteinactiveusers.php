@@ -15,6 +15,7 @@ if (empty($lang) || !is_array($lang))
 	$lang = array();
 }
 $lang = array_merge($lang, array(
-	'INACTIVE_USERS_DAYS' => 'Verwijder inactieve gebruikers',
-	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Dagen geregistreerd alvorens een herinnering te sturen. Een week later zullen de nieuwe inactive gebruikers welke nooit ingelogd zijn geweest, verwijderd worden.'
+	'INACTIVE_USERS_DAYS' 			=> 'Verwijder inactieve gebruikers',
+	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Dagen geregistreerd alvorens een herinnering te sturen. Een week later zullen de nieuwe inactive gebruikers welke nooit ingelogd zijn geweest, verwijderd worden.',
+	'LOG_INACTIVE_USERS'			=> '<strong>Delete inactive users</strong><br />» %s'
 ));

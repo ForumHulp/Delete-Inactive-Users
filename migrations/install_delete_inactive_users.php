@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\DeleteInactiveUsers\migrations;
+namespace forumhulp\deleteinactiveusers\migrations;
 
 class install_delete_inactive_users extends \phpbb\db\migration\migration
 {

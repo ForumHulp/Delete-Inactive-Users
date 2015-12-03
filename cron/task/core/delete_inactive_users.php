@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\DeleteInactiveUsers\cron\task\core;
+namespace forumhulp\deleteinactiveusers\cron\task\core;
 
 /**
 * @ignore
@@ -40,7 +40,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 		$this->log = $log;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
-	}
+}
 
 	/**
 	* Runs this cron task.
@@ -49,6 +49,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 	*/
 	public function run()
 	{
+		$this->user->add_lang(array('acp/common'));
 		$expire_date = time() - ($this->config['delete_inactive_users_days'] * 86400);
 		$msg_list = $delete_list = $not_deleted_yet = array();
 		$user_warnlist = json_decode($this->config_text->get('delete_inactive_users_warning'), true);
@@ -144,7 +145,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 
 		if (!sizeof($delete_list) && !sizeof($msg_list))
 		{
-			$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'NO_INACTIVE_USERS', false, array());
+			$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_USERS', false, array($this->user->lang['NO_INACTIVE_USERS']));
 		}
 		$msg_list += $not_deleted_yet;
 

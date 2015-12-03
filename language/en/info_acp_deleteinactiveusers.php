@@ -18,6 +18,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'INACTIVE_USERS_DAYS' => 'Delete inactive users',
-	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Days registered before cron will send a reminder. One week later the new inactive users who never where logged in, will be deleted.'
+	'INACTIVE_USERS_DAYS' 			=> 'Delete inactive users',
+	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Days registered before cron will send a reminder. One week later the new inactive users who never where logged in, will be deleted.',
+	'LOG_INACTIVE_USERS'			=> '<strong>Delete inactive users</strong><br />» %s'
 ));

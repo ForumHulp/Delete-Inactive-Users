@@ -7,7 +7,7 @@
 *
 */
 
-namespace forumhulp\DeleteInactiveUsers;
+namespace forumhulp\deleteinactiveusers;
 
 class ext extends \phpbb\extension\base
 {

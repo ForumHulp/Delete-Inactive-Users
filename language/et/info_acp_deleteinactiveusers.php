@@ -16,5 +16,6 @@ if (empty($lang) || !is_array($lang))
 }
 $lang = array_merge($lang, array(
 	'INACTIVE_USERS_DAYS' => 'Kustuta mitteaktiivsed kasutajad',
-	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Registreerimisest möödunud päevade arv, mil <i>cron</i> saadab meeldetuletuse. Üks nädal hiljem, uued mitteaktiivsed liikmed, kes ei ole kordagi sisseloginud - kustutatakse.'
+	'INACTIVE_USERS_DAYS_EXPLAIN'	=> 'Registreerimisest möödunud päevade arv, mil <i>cron</i> saadab meeldetuletuse. Üks nädal hiljem, uued mitteaktiivsed liikmed, kes ei ole kordagi sisseloginud - kustutatakse.',
+	'LOG_INACTIVE_USERS'			=> '<strong>Delete inactive users</strong><br />» %s'
 ));
