@@ -107,7 +107,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 				$server_url = generate_board_url();
 				$messenger = new \messenger(false);
 
-				foreach($msg_list as $key => $value)
+				foreach ($msg_list as $key => $value)
 				{
 					$messenger->template('user_remind_inactive', $value['lang']);
 
