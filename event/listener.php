@@ -61,9 +61,8 @@ class listener implements EventSubscriberInterface
 	static function delete_users_options($value, $key)
 	{
 		global $config, $user;
-		
+
 		return '<input type="text" name="config[delete_inactive_users_days]" value="' . $config['delete_inactive_users_days'] . '" />
-		' . $user->lang['SEND_MESSAGE'] . ' <label><input name="config[delete_inactive_send_message]" class="radio" id="delete_inactive_send_message" type="radio"' . (($config['delete_inactive_send_message']) ? ' checked="checked"' : '') . ' value="1"> ' . $user->lang['YES'] . '</label> <label><input name="config[delete_inactive_send_message]" class="radio" type="radio"' . (($config['delete_inactive_send_message']) ? '' : ' checked="checked"') . ' value="0"> ' . $user->lang['NO'] . '</label>';
-		
+		' . $user->lang['SEND_MESSAGE'] . ' <label><input name="config[delete_inactive_send_message]" class="radio" id="delete_inactive_send_message" type="radio"' . (($config['delete_inactive_send_message']) ? ' checked="checked"' : '') . ' value="1"> ' . $user->lang['YES'] . '</label> <label><input name="config[delete_inactive_send_message]" class="radio" type="radio"' . (($config['delete_inactive_send_message']) ? '' : ' checked="checked"') . ' value="0"> ' . $user->lang['NO'] . '</label>';	
 	}
 }
