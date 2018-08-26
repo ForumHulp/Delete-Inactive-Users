@@ -95,7 +95,7 @@ class delete_inactive_users extends \phpbb\cron\task\base
 		}
 		$this->db->sql_freeresult($result);
 
-		if (sizeof($msg_list))
+		if ($this->config['delete_inactive_send_message'] && sizeof($msg_list))
 		{
 			if ($this->config['email_enable'])
 			{
