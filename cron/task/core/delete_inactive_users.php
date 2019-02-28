@@ -140,6 +140,8 @@ class delete_inactive_users extends \phpbb\cron\task\base
 		{
 			$sql = 'DELETE FROM ' . USERS_TABLE . ' WHERE ' . $this->db->sql_in_set('user_id', array_keys($delete_list));
 			$this->db->sql_query($sql);
+			$sql = 'DELETE FROM ' . USER_GROUP_TABLE . ' WHERE ' . $this->db->sql_in_set('user_id', array_keys($delete_list));
+			$this->db->sql_query($sql);
 			$this->log->add('admin', $this->user->data['user_id'], $this->user->data['session_ip'], 'LOG_INACTIVE_DELETE', false, array(implode(', ', $delete_list)));
 		}
 
